@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mushvig Shukurov">
+    <title>Mushvig Shukurov</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <label class="group phone">
+            <span>(+994)</span>
+            <p>Əlaqə nömrəsi</p>
+            <input type="text" placeholder="##-###-##-##" autocomplete="off">
+        </label>
+    </div>
+    <script>
+        let phone_input = document.querySelector(".phone > input")
+        phone_input.addEventListener("keydown", phoneDash)
+        phone_input.addEventListener("keyup", phoneDash2)
+
+        function phoneDash(e) {
+            if (parseInt(e.key) || e.key == "0") {
+                const num = e.target.value
+                if (num.length == 12) {
+                    e.preventDefault()
+                    e.target.value = num.slice(0, 12)
+                }
+            } else if (e.key != "Backspace") {
+                e.preventDefault()
+            }
+
+        }
+
+        function phoneDash2(e) {
+            if (parseInt(e.key) || e.key == "0") {
+                const num = e.target.value
+                if (num.length == 2 || num.length == 6 || num.length == 9) {
+                    e.target.value += "-"
+                }
+            } else if (e.key != "Backspace") {
+                e.preventDefault()
+            }
+        }
+
+    </script>
+</body>
+
+</html>
